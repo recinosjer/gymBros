@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymBROS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-white">
+    <div class="container my-4">
+        <!-- Encabezado -->
+        <header class="d-flex justify-content-between align-items-center py-3 mb-4 border-bottom border-secondary">
+            <h1 class="text-center flex-grow-1 m-0 fw-bold">GymBROS</h1>
+            <button class="btn btn-outline-light ms-3" id="logout-button" aria-label="Cerrar Sesión">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </header>
+
+        <!-- Botones de acción y filtro -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <!-- Botones de acción -->
+            <div>
+                <button class="btn btn-outline-primary btn-sm me-2" onclick="sortByFecha()">Ordenar</button>
+                <button class="btn btn-outline-info btn-sm me-2" id="downloadButton">Descargar</button>
+                <button class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#createExerciseModal">Crear Ejercicios</button>
+            </div>
+            <!-- Filtro por nombre -->
+            <div class="w-50">
+                <input type="text" id="filterInput" class="form-control bg-dark text-white border-secondary" placeholder="Filtrar por nombre">
+            </div>
+        </div>
+
+        <!-- Tabla CRUD -->
+        <div class="table-responsive">
+            <table class="table table-striped table-dark border-secondary">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Repeticiones</th>
+                        <th scope="col">Zona Muscular</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody id="exercise-table-body">
+                    <tr>
+                        <td>Press de banca</td>
+                        <td>80 kg</td>
+                        <td>12</td>
+                        <td>Pecho</td>
+                        <td>2024-12-10</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm me-2" onclick="editExercise(this)" aria-label="Editar">
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteExercise(this)" aria-label="Eliminar">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Crear -->
+    <div class="modal fade" id="createExerciseModal" tabindex="-1" aria-labelledby="createExerciseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="createExerciseModalLabel">Crear Ejercicio</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createExerciseForm">
+                        <div class="mb-3">
+                            <label for="createNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="createNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createPeso" class="form-label">Peso</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="createPeso" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createZonaMuscular" class="form-label">Zona Muscular</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="createZonaMuscular" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createRepeticiones" class="form-label">Repeticiones</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="createRepeticiones" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createFecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="createFecha" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Editar -->
+    <div class="modal fade" id="editExerciseModal" tabindex="-1" aria-labelledby="editExerciseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="editExerciseModalLabel">Editar Ejercicio</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editExerciseForm">
+                        <div class="mb-3">
+                            <label for="editNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="editNombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPeso" class="form-label">Peso</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="editPeso" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editZonaMuscular" class="form-label">Zona Muscular</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="editZonaMuscular" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editRepeticiones" class="form-label">Repeticiones</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="editRepeticiones" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="editFecha" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Archivo generado por TypeScript -->
+    <script src="../js/ejercicios.js"></script>
+</body>
+</html>

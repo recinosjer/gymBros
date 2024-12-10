@@ -1,0 +1,30 @@
+
+    .btn-soft-primary {
+        background-color: #A3D8FF; /* Azul suave */
+        color: #333;
+        border-color: #A3D8FF;
+    }
+    
+    .btn-soft-primary:hover {
+        background-color: #80C6FF;
+    }
+
+    .btn-soft-info {
+        background-color: #A0E3D7; /* Verde suave */
+        color: #333;
+        border-color: #A0E3D7;
+    }
+
+    .btn-soft-info:hover {
+        background-color: #7FDFBF;
+    }
+
+    .btn-soft-success {
+        background-color: #C1E1C1; /* Verde pastel suave */
+        color: #333;
+        border-color: #C1E1C1;
+    }
+
+    .btn-soft-success:hover {
+        background-color: #A9D7A9;
+    }

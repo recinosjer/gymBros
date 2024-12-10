@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/recinosjer/Project-PrograWEB.git"
+    "url": "git+https://github.com/recinosjer/gymBros.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/recinosjer/Project-PrograWEB/issues"
+    "url": "https://github.com/recinosjer/gymBros/issues"
   },
-  "homepage": "https://github.com/recinosjer/Project-PrograWEB#readme",
+  "homepage": "https://github.com/recinosjer/gymBros#readme",
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
