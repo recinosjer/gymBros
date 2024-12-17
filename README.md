@@ -14,7 +14,7 @@ GymBros es una aplicación web diseñada para facilitar la gestión de usuarios 
   - Creación de rutinas de entrenamiento personalizadas.
   - Listado de todas las rutinas disponibles.
   - Búsqueda de rutinas por  nombre.
-  - Eliminación de rutinas por ID.
+  - Eliminación de rutinas
 
 ### Frontend
 
